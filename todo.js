@@ -4,7 +4,20 @@ const todoList = document.querySelector(".js-toDoList");  //ul tag
 
 const TODOS_LS = 'toDos';
 
-const toDos = [];
+let toDos = [];
+
+
+function deleteToDo(event){
+      const btn = event.target;
+      const li = btn.parentNode;
+      todoList.removeChild(li);
+      const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id)  //toDd.id >> INT li.id>>STRING so, li.id have to be changed STRING TO INT
+      });
+      toDos = cleanToDos;
+      saveToDos();
+
+}
 
 function saveToDos(){
     localStorage.setItem(TODOS_LS,JSON.stringify(toDos)); //JSON.stringify 는 javascript 의 object 를 string 으로 바꿔주는 역할 
@@ -16,6 +29,7 @@ function paintToDo(text){ //text 는 사용자가 적은 todoInput 의 value 임
     const span = document.createElement("span");
     const newId = toDos.length + 1; //맨 첨엔 toDos array 가 비어있으니까 newid 값은 1이 될 것임
     delBtn.innerText = "❌";
+    delBtn.addEventListener("click",deleteToDo);
     span.innerText = text;
     li.appendChild(delBtn);
     li.appendChild(span);
