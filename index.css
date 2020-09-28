@@ -1,7 +1,8 @@
  body{
-     background-color:peru;
+     background-color:#ecf0f1;
  }
-h1{
+
+body{
     color:#34495e;
     transition : color .5s ease-in-out;
 }
@@ -13,3 +14,16 @@ h1{
 .btn{
     cursor: pointer; 
 }
+
+.form{
+    display: none;
+}
+
+.greetings{
+    display: none;
+}
+
+.showing{
+    display:block;
+}
+
